@@ -34,7 +34,7 @@ def convolution(img, kernel):
 def main():
     # Do not modify this function
 
-    cat_img = comp110_image.Picture(filename="cute-cat.gif")
+    cat_img = comp110_image.Picture(filename="cute-cat.jpg")
     cat_img.show()
     convolution(cat_img, [[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]])
     cat_img.show()
