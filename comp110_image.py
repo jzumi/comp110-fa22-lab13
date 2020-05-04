@@ -411,6 +411,7 @@ class Picture:
     getPixel = get_pixel
     setColor = set_color
     getTitle = get_title
+    setTitle = set_title
     getWidth = get_width
     getHeight = get_height
     setPixel = set_color
