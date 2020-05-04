@@ -62,8 +62,10 @@ def main():
     # Do not modify this function
 
     cat_img = comp110_image.Picture(filename="cute-cat.jpg")
+    cat_img.setTitle("Before convolution (edge detect)")
     cat_img.show()
     convolution(cat_img, [[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]])
+    cat_img.setTitle("After convolution (edge detect)")
     cat_img.show()
 
 
