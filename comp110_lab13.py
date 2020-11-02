@@ -1,7 +1,7 @@
 """
-Module: comp110_lab14
+Module: comp110_lab13
 
-Starter code for Lab 14 (Image convolution)
+Starter code for Lab 13 (Image convolution)
 """
 
 import comp110_image
