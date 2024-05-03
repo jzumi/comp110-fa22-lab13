@@ -27,14 +27,40 @@ def apply_kernel(img, filtered_img, x, y, kernel):
 
     for i in range(-1, 2):
         for j in range(-1, 2):
+            pixel_val = img.getPixel(x+j, y+i)
+            # k_val = kernel[j][i]
+            r = pixel_val.getRed()
+            b = pixel_val.getBlue()
+            g = pixel_val.getGreen()
+
+            red_sum += r*kernel[i+1][j+1]
+            green_sum += g*kernel[i+1][j+1]
+            blue_sum += b*kernel[i+1][j+1]
+
             # To do: Get the correct neighborhood pixel
 
             # To Do: add to red_sum, green_sum, and blue_sum based on
             # multiplication the pixel's color with the kernel.
             # Note that you will use getPixel to get the pixel from img
             # and kernel[???][???] to get the value in the kernel.
-            pass
 
+    if (red_sum > 255):
+        red_sum = 255
+    if (red_sum < 0):
+        red_sum = 0
+    if (green_sum > 255):
+        green_sum = 255
+    if (green_sum < 0):
+        green_sum = 0
+    if (blue_sum > 255):
+        blue_sum = 255
+    if (blue_sum < 0):
+        blue_sum = 0
+
+    new_img = filtered_img.getPixel(x, y)
+    new_img.setRed(red_sum)
+    new_img.setGreen(green_sum)
+    new_img.setBlue(blue_sum)
     # To Do: If red_sum, green_sum, or blue_sum are outside of the correct
     # range, set them to be within the range. For example, if red_sum is less
     # than 0, change it to 0.
@@ -60,12 +86,13 @@ def convolution(img, kernel):
     filtered_img = img.copy()
 
     # To Do: modify range to avoid border pixels
-    for x in range(img.getWidth()):
-        for y in range(img.getHeight()):
+    for x in range(1, img.getWidth()-1):
+        for y in range(1, img.getHeight()-1):
             # To Do: call the apply_kernel function here
-            pass
+            apply_kernel(img, filtered_img,  x, y, kernel)
 
     return filtered_img
+
 
 def main():
     # Do not modify this function
@@ -73,7 +100,8 @@ def main():
     cat_img = comp110_image.Picture(filename="cute-cat.jpg")
     cat_img.setTitle("Before convolution (edge detect)")
     cat_img.show()
-    convoluted_cat = convolution(cat_img, [[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]])
+    convoluted_cat = convolution(
+        cat_img, [[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]])
     convoluted_cat.setTitle("After convolution (edge detect)")
     convoluted_cat.show()
 
